@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+    body{
+        background: linear-gradient(#141e30,#243b55)
+    }
+</style>
+<body>
+<div style="color: white;">
+<div style="font-size: 45px;color: white;" align="center">
+<p>    Task Setting and Publishing </p>
+<p>    _________________________________________________________ </p>
+    <br>
+<p>Embodied Agent Visual Co-Design
+</div>
+
+
+<form method="post" enctype="multipart/form-data">
+<div id="visual_design_method" align="center">
+<p style="font-size: 35px;">Visual Design Method:
+
+    <select name="visual_method"  id="visual_method" onchange="select_method()">
+        <option value="default individual">Default Individual</option>
+        <option value="mix layer">Mix Layer</option>
+</select>
+</p>
+ * Task Name: <input type="text" name="task_name" value="example: Online Embodied Virtual Teacher" style="width: 700px;">
+    <br>
+    * Introduction: <input type="text" name="introduction" value="example: Teaching Covid-19 Knowledge" style="width: 700px;">
+    <br>
+<div id="visual_method_display" style="font-size: 30px">
+
+    Description Image of The Agent:  (One visual description)
+
+        <input type="file" name="description_picture">
+        <br><br><br>
+    Basic Canvas:  (Basic background to draw embodied agent)
+
+        <input type="file" name="character_background">
+    <br>
+     Step Task Demand<input type="text" style="width: 500px" name="character_design_demand" value="example: Draw a robot teacher on an online classroom">
+        <br><br><br>
+     Vivid Canvas: (Background with text and icons)
+
+    <input type="file" name="conversation_picture">
+    <br>
+    Step Task Demand<input type="text" style="width: 500px" name="scenario_design_demand" value="example: Draw facial and physical movements about the robot teacher">
+           <br><br><br>
+     Time Limit (min) <input type="text" name="time_limit" size="2" value="20">
+    <br>
+    * <input type="checkbox" name="select_age" id="select_age" onclick="huchi1(this)"> Target Age Group: <input type="text" name="age_group" size="2"> <input type="checkbox" name="select_all" id="select_all" onclick="huchi2(this)" > Distribute to all users <input type="checkbox" name="select_group" id="select_group" onclick="huchi5(this)" > Group No <input type="text" name="group_no">
+    <br>
+    * Award Star Number: <select name="award_star">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br>
+    <input type="checkbox"  name="vote_system"> Vote System
+    <br>
+    <input type="checkbox" name="oral_section" onclick="oral_section_switch(this)"  id="oral_section"> Embodied Agent Oral Design
+<br><br>
+</div>
+
+</div>
+
+<br><br>
+    <div align="center" id="oral_setting" style="font-size: 25px">
+
+
+
+</div>
+
+
+    <div align="center" id="method">
+    <p>------------------------------------------</p>
+        <p style="font-size: 45px;">Pariticpant Allocation</p>
+    <br>
+    <input name="mode_linear" type="checkbox" id="mode_linear" onclick="huchi3(this)"><img src="../static/Icons/Within_Fall.png" width="30%">
+
+    <input name="mode_agile" type="checkbox" id="mode_agile" onclick="huchi4(this)"><img src="../static/Icons/Between_Agile.png" width="30%">
+
+        <p>* Linear Mode - every participant will experience visual design and oral design</p>
+        <p>* Distribute Mode - Part of participants will take visual design while the rest will take oral design</p>
+
+    </div>
+      <br>
+<div align="center">
+<button class="ant-btn-red" >Submit</button>
+</div>
+
+
+
+
+
+
+
+
+
+</form>
+</div>
+</body>
+</html>
+
+<script>
+function add_more() {
+
+    opts = document.getElementById('corpus_line')
+    cp = document.getElementById("question_list")
+    cp.innerHTML = ""
+    for (i = 1; i <=opts.value; i++) {
+        cp.innerHTML+=
+            "Speech synthesis"+ i +":<textarea name=\"voice_text\" rows=\"3\" cols=\"50\"></textarea>\n" +
+            "        <br>\n" +
+            "\n" +
+            "        Expected Key Word "+i+": <input type=\"text\" name=\"keywords\">\n" +
+            "        <br><br>\n"
+
+
+    }
+}
+
+
+
+        function change_board() {
+         let board_review = document.getElementById("board")
+        let select_status=document.getElementById("assistive1").checked;
+        if (select_status== true) {
+            board_review.innerHTML = "<img src='../static/Icons/painting_board.png' width='20%'>"
+        }
+        if(select_status==false)
+        {
+            board_review.innerHTML = "<img src='../static/Icons/white_board.png' width='20%'>"
+        }
+    }
+
+    function huchi1(obj){
+            if (obj.checked){
+                document.all.select_all.checked=false
+                document.all.select_group.checked=false
+            }
+    }
+
+    function huchi2(obj){
+            if(obj.checked){
+                document.all.select_age.checked=false
+                 document.all.select_group.checked=false
+            }
+    }
+
+    function huchi5(obj){
+    if(obj.checked){
+        document.all.select_age.checked=false
+        document.all.select_all.checked=false
+    }
+    }
+
+    function add_step2(checkbox)
+    {
+        layer=document.getElementById("layer")
+        if (checkbox.checked==true){
+            layer.innerHTML="<input type=\"checkbox\"  name=\"idea_layer\" onclick=\"add_step2(this)\" id=\"step2\"  checked=\"true\"> demand on mix designing <textarea name='mix_layer_demand' cols=50 rows=3> "
+        }
+         if (checkbox.checked==false){
+            layer.innerHTML="<input type=\"checkbox\"  name=\"idea_layer\" onclick=\"add_step2(this)\" id=\"step2\"> Idea Layer Mix ( Users will add more elements based on others' output using basic background, matching will be random)"
+        }
+    }
+
+
+        function huchi3(obj){
+            if (obj.checked){
+                document.all.mode_agile.checked=false
+            }
+    }
+
+    function huchi4(obj){
+            if(obj.checked){
+                document.all.mode_linear.checked=false
+            }
+    }
+
+
+    function select_method() {
+        visual_method = document.getElementById('visual_method')
+        visual_method_display = document.getElementById('visual_method_display')
+        oral_setting=document.getElementById('oral_setting')
+        method=document.getElementById("method")
+        if (visual_method.value == 'mix layer') {
+            visual_method_display.innerHTML =
+                "    <p>The system only provides a blank board with painting tools</p>\n" +
+                "    <img src=\"../static/Icons/white_board.png\" width=\"30%\">\n" +
+                "    <br>\n" +
+                "    \n" +
+                "    First Layer Design Requirement: Visual Environment<textarea name=\"layer1_demand\" cols=\"50\"></textarea>\n" +
+                "    <br>\n" +
+                "    Second Layer Design Requiremnt: Embodied Agent<textarea name=\"layer2_demand\" cols=\"50\"></textarea>\n" +
+                "<br>\n" +
+                "     Time Limit (min) <input type=\"text\" name=\"time_limit\" size=\"2\" value=\"20\"> \n" +
+                "    <br>\n" +
+                "    * <input type=\"checkbox\" name=\"select_age\" id=\"select_age\" onclick=\"huchi1(this)\"> Target Age Group: <input type=\"text\" name=\"age_group\" size=\"2\"> <input type=\"checkbox\" name=\"select_all\" id=\"select_all\" onclick=\"huchi2(this)\" > Distribute to all users\n <input type=\"checkbox\" name=\"select_group\" id=\"select_group\" onclick=\"huchi5(this)\" > Group No <input type=\"text\" name=\"group_no\"> \n" +
+                "    <br>\n" +
+                "    * Award Star Number: <select name=\"award_star\">\n" +
+                "        <option value=\"1\">1</option>\n" +
+                "        <option value=\"2\">2</option>\n" +
+                "        <option value=\"3\">3</option>\n" +
+                "        <option value=\"4\">4</option>\n" +
+                "        <option value=\"5\">5</option>\n" +
+                "    </select>\n" +
+                "    <br>\n"
+            oral_setting.innerHTML=""
+
+            method.innerHTML=""
+        }
+        if (visual_method.value == 'default individual') {
+            visual_method_display.innerHTML ="   Description Image of The Agent:  (One visual description)\n" +
+                "\n" +
+                "        <input type=\"file\" name=\"description_picture\">\n" +
+                "        <br><br><br>\n" +
+                "    Basic Canvas:  (Basic background to draw embodied agent)\n" +
+                "\n" +
+                "        <input type=\"file\" name=\"character_background\">\n" +
+                "    <br>\n" +
+                "     Step Task Demand<input type=\"text\" style=\"width: 500px\" name=\"character_design_demand\" value=\"example: Draw a robot teacher on an online classroom\">\n" +
+                "        <br><br><br>\n" +
+                "     Vivid Canvas: (Background with text and icons)\n" +
+                "\n" +
+                "    <input type=\"file\" name=\"conversation_picture\">\n" +
+                "    <br>\n" +
+                "    Step Task Demand<input type=\"text\" style=\"width: 500px\" name=\"scenario_design_demand\" value=\"example: Draw facial and physical movements about the robot teacher\">\n" +
+                "           <br><br><br>\n" +
+                "     Time Limit (min) <input type=\"text\" name=\"time_limit\" size=\"2\" value=\"20\">\n" +
+                "    <br>\n" +
+                "    * <input type=\"checkbox\" name=\"select_age\" id=\"select_age\" onclick=\"huchi1(this)\"> Target Age Group: <input type=\"text\" name=\"age_group\" size=\"2\"> <input type=\"checkbox\" name=\"select_all\" id=\"select_all\" onclick=\"huchi2(this)\" > Distribute to all users <input type=\"checkbox\" name=\"select_group\" id=\"select_group\" onclick=\"huchi5(this)\" > Group No <input type=\"text\" name=\"group_no\"> \n" +
+                "    <br>\n" +
+                "    * Award Star Number: <select name=\"award_star\">\n" +
+                "        <option value=\"1\">1</option>\n" +
+                "        <option value=\"2\">2</option>\n" +
+                "        <option value=\"3\">3</option>\n" +
+                "        <option value=\"4\">4</option>\n" +
+                "        <option value=\"5\">5</option>\n" +
+                "    </select>\n" +
+                "    <br>\n" +
+                "    <input type=\"checkbox\"  name=\"vote_system\"> Vote System\n" +
+                "    <br>\n" +
+                "    <input type=\"checkbox\" name=\"oral_section\" onclick=\"oral_section_switch(this)\"  id=\"oral_section\"> Embodied Agent Oral Design\n" +
+                "<br>"
+            method.innerHTML="<br>\n" +
+                "    <input name=\"mode_linear\" type=\"checkbox\" id=\"mode_linear\" onclick=\"huchi3(this)\"><img src=\"../static/Icons/Within_Fall.png\" width=\"30%\">\n" +
+                "\n" +
+                "    <input name=\"mode_agile\" type=\"checkbox\" id=\"mode_agile\" onclick=\"huchi4(this)\"><img src=\"../static/Icons/Between_Agile.png\" width=\"30%\">\n" +
+                    "<p>* Linear Mode - every participant will experience visual design and oral design</p>\n" +
+                "        <p>* Distribute Mode - Part of participants will take visual design while the rest will take oral design</p>"+
+                "                <br>"
+
+        }
+
+    }
+
+    function oral_section_switch(obj){
+
+        let oral_setting=document.getElementById('oral_setting')
+        if (obj.checked==false){
+            oral_setting.innerHTML=''
+        }
+        else{
+            oral_setting.innerHTML="Dialogue Turn  <select id=\"corpus_line\" onchange=\"add_more()\">" +
+                   "<option value=\"1\">1</option>\n" +
+                "<option value=\"2\">2</option>\n" +
+                "<option value=\"3\">3</option>\n" +
+                "<option value=\"4\">4</option>\n" +
+                "<option value=\"5\">5</option>\n"+
+                "<option value=\"6\">6</option>\n" +
+                "<option value=\"7\">7</option>\n" +
+                "<option value=\"8\">8</option>\n" +
+                "<option value=\"9\">9</option>\n" +
+                "<option value=\"10\">10</option>\n" +
+                "<option value=\"11\">11</option>\n" +
+                "<option value=\"12\">12</option>\n" +
+                "<option value=\"13\">13</option>\n" +
+                "<option value=\"14\">14</option>\n" +
+                "<option value=\"15\">15</option>\n" +
+                "<option value=\"16\">16</option>\n" +
+                "<option value=\"17\">17</option>\n" +
+                "<option value=\"18\">18</option>\n" +
+                "<option value=\"19\">19</option>\n" +
+                "<option value=\"20\">20</option>\n" +
+                "<option value=\"21\">21</option>\n" +
+                "<option value=\"22\">22</option>\n" +
+                "<option value=\"23\">23</option>\n" +
+                "<option value=\"24\">24</option>\n" +
+                "<option value=\"25\">25</option>\n" +
+                "<option value=\"26\">26</option>\n" +
+                "<option value=\"27\">27</option>\n" +
+                "<option value=\"28\">28</option>\n" +
+                "<option value=\"29\">29</option>\n" +
+                "<option value=\"30\">30</option>\n" +
+                "<option value=\"31\">31</option>\n" +
+                "<option value=\"32\">32</option>\n" +
+                "<option value=\"33\">33</option>\n" +
+                "<option value=\"34\">34</option>\n" +
+                "<option value=\"35\">35</option>\n" +
+                "<option value=\"36\">36</option>\n" +
+                "<option value=\"37\">37</option>\n" +
+                "<option value=\"38\">38</option>\n" +
+                "<option value=\"39\">39</option>\n" +
+                "<option value=\"40\">40</option>\n" +
+                "<option value=\"41\">41</option>\n" +
+                "<option value=\"42\">42</option>\n" +
+                "<option value=\"43\">43</option>\n" +
+                "<option value=\"44\">44</option>\n" +
+                "<option value=\"45\">45</option>\n" +
+                "<option value=\"46\">46</option>\n" +
+                "<option value=\"47\">47</option>\n" +
+                "<option value=\"48\">48</option>\n" +
+                "<option value=\"49\">49</option>\n" +
+                "<option value=\"50\">50</option>\n"+
+                "    </select><br><br>"+"<div id=\"question_list\"> </div>"
+
+
+        }
+    }
+</script>
+
+<style>
+    .ant-btn-red {
+    color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        font-size: 30px;
+}
+</style>

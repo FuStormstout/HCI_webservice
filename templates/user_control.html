@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Control</title>
+</head>
+<body>
+
+
+<div  align="center">
+<p style="font-size: 40px;font-weight: 700">User Detail</p>
+<table border="1" cellspacing="0"  align="center">
+
+<tr>
+    <th>Username</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Current Task Code</th>
+    <th>Cumulative Score</th>
+    <th>Group</th>
+    <th>Change Group</th>
+</tr>
+{% for element in child_info %}
+<tr>
+    <th>{{ element.username }}</th>
+    <th>{{ element.age }}</th>
+    <th>{{ element.gender }}</th>
+    <th>{{ element.current_task_code}}</th>
+    <th>{{ element.score }}</th>
+    <th>{{ element.group_no }}</th>
+    <form method="post">
+    <th><input type="text" name="change_group"></th>
+        <input type="hidden" name="username" value="{{ element.username }}">
+</tr>
+{% endfor %}
+</table>
+<br>
+<button class="back">Save Changes</button></form>
+<a href="designer_interface"><button class="back">Back</button></a><br><br>
+</div>
+
+
+</body>
+</html>
+
+<style>
+   .back {
+    color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+       font-size: 30px;
+}
+</style>

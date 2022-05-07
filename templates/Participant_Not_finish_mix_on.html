@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div align="center" style="font-size: 40px;color: white">
+    <table border="1" cellspacing="0">
+        <tr>
+            <th>Name</th>
+            <th>Task Layer</th>
+            <th>Finish</th>
+        </tr>
+        {% for x in mix_us_list %}
+        <tr>
+            <th>{{ x.username }}</th>
+            <th>{{ x.job_type }}</th>
+            <th>{{ x.finish_task }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    <p>The task is not completed yet.</p><br>
+    <p>Waiting for {{ layer1_not_finish_amount }} participants to finish the layer1 drawing</p><br>
+    <p>Waiting for {{ layer2_not_finish_amount }} participants to finsih the layer2 drawing</p><br>
+
+    <a href="http://1.15.236.219:5050/designer_interface"><button class="back">Back</button></a>
+<a href="javascript:void(0)" onclick="location.reload()" ><button class="back">Refresh</button></a>
+</div>
+</body>
+</html>
+<style>
+    .back{
+                   color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        font-size: 40px;
+    }
+        body {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*让页面始终占浏览器可视区域总高度*/
+	height: 100vh;
+	/*背景渐变色*/
+	background: linear-gradient(#141e30,#243b55);
+
+
+}
+</style>

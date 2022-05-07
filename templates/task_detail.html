@@ -1,0 +1,24 @@
+Task code: {{task_code}}
+
+{% for element in task_info %}
+
+Task name:{{ task_info.task_name }}
+
+{% endfor %}
+
+
+{% for item in context %}
+<table border="1">
+    <tr>  <td> {{item.username }}</td>
+          <td> {{ item.job_type }}</td>
+        <td><img src="../static/user/{{ item.username }}/{{ task_code }}/character_design/character_design.jpg"></td>
+        <td><img src="../static/user/{{ item.username }}/{{ task_code }}/scenario_design/scenario_design.jpg"></td>
+        <td><img src="../static/user/{{ item.username }}/{{ task_code }}/mix_layer1/layer1.png"></td>
+        <td><img src="../static/user/{{ item.username }}/{{ task_code }}/mix_layer2/layer2.png"></td>
+
+    </tr>
+</table>
+{% endfor %}
+
+
+<a href="designer_interface">Back to main interface</a>

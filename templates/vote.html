@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div align="center" >
+<p style="font-size: 35px"> Marking all the products from 1 to 5!</p>
+   <form method="post">
+   <table border="1" cellspacing="0">
+{% for item in name_list %}
+    <tr>
+    <th>  <li>{{ item.username }} </li></th>
+
+    <th>    <img src="../static/user/{{ item.username }}/{{ task_code }}/character_design/character_design.jpg" width="30%"></th>
+
+<th>         <select name="{{ item.username }}_character">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+         <option value="5">5</option>
+
+</select></th>
+
+    <th>   <img src="../static/user/{{ item.username }}/{{ task_code }}/conversation_picture/conversation_picture.jpg" width="30%"></th>
+   <th>   <select name="{{ item.username }}_scenario">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+         <option value="5">5</option>
+   </select></th>
+    </tr>
+{% endfor %}
+
+   </table>
+   <br><br>
+   <a href="finish">
+  <button class="submit" style="font-size: 35px">Submit</button>
+   </a>
+   </form>
+</div>
+</body>
+</html>
+
+<style>
+        .submit {
+    color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        font-size: 30px;
+}
+
+    body{
+        background-color: powderblue;
+    }
+</style>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="firstpaneDiv" class="menu_list">
+<h3 class="menu_head current" style="font-size: 20px;">System Control</h3>
+<div style="display:block;font-size: 20px" class="menu_nva">
+<a href="create_publish">Create a new task</a>
+<a href="ini_task">Initialize Task Table</a>
+<a href="ini_user">Initialize User Group</a>
+    <a href="user_control">Browse User Detail</a>
+
+</div>
+</div>
+
+
+<div style="float: right;width: 80%;">
+<br>
+
+<p style="font-size: 20px;">   Task List: <button type="button"  onclick="javascript:location.reload()" class="ant-btn-red">REFRESH</button></p><br>
+
+
+
+{% for item in task_list %}
+    <div class="panel-group" id="accordion">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion"
+				   href="#collapse{{ item.code }}">
+
+Task Name: {{ item.task_name }}
+
+    </a>
+			</h4>
+		</div>
+		<div id="collapse{{ item.code }}" class="panel-collapse collapse">
+			<div class="panel-body">
+                <form method="post">
+    <input type="hidden" value="{{ item.code }}" name="code">
+    Task Code:  <a href="task_detail/{{ item.code }}">{{ item.code }}</a>
+    <br>
+    </form>
+                <br>
+                Introduction: {{ item.introduction }}<br>
+                Create Time: {{ item.create_time }}<br>
+                Sample Size: {{ item.sample_size }}<br>
+                Age Group: {{ item.age_group }} <br>
+                Select All Users: {{ item.select_all }}<br>
+                Group No. :{{ item.group_no }}<br>
+                Time Limit: {{ item.time_limit }}<br>
+                Award Stars: {{ item.award_star }}<br>
+                Vote Option:  {{ item.time_limit }}<br>
+                Mix Layer Method: {{ item.mix_layer }}<br>
+                Basic Canvas Task Demand: {{ item.character_task_demand }}<br>
+                Vivid Canvas Task Demand: {{ item.scenario_task_demand }}<br>
+                First Layer Demand: {{ item.layer1_demand }}<br>
+                Second Layer Demand: {{ item.layer2_demand }}<br>
+                Description Picture:<br>
+                <img src="../static/Task/{{ item.code }}/description_picture/description_picture.png" width="40%">
+
+
+
+    <br>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endfor %}
+</div>
+</body>
+</html>
+
+<style type="text/css">
+
+
+    .menu_list {
+        float: left;
+        width: 20%;
+width: 17%;
+margin: 0;
+}
+
+.menu_head {
+height: 47px;
+line-height: 47px;
+padding-left: 38px;
+font-size: 14px;
+color: #525252;
+cursor: pointer;
+border: 1px solid #f1f1f1;
+position: relative;
+margin: 0px;
+font-weight: bold;
+background: #51a9f18c;
+}
+
+.menu_list .current {
+background: #51a9f18c;
+}
+
+.menu_nva {
+line-height: 38px;
+border-left: 1px solid #51a9f18c;
+backguound: #fff;
+border-right: 1px solid #51a9f18c;
+}
+
+.menu_nva a {
+display: block;
+height: 38px;
+line-height: 38px;
+padding-left: 38px;
+color: #777777;
+background: #fff;
+text-decoration: none;
+border-bottom: 1px solid #51a9f18c;
+}
+
+.menu_nva a:hover {
+text-decoration: none;
+}
+</style>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$("#firstpaneDiv .menu_nva:eq(0)").show();
+$("#firstpaneDiv h3.menu_head").click(function(){
+$(this).addClass("current").next("div.menu_nva").slideToggle(200).siblings("div.menu_nva").slideUp("slow");
+$(this).siblings().removeClass("current");
+});
+$("#secondpane .menu_nva:eq(0)").show();
+$("#secondpane h3.menu_head").mouseover(function(){
+$(this).addClass("current").next("div.menu_nva").slideDown(400).siblings("div.menu_nva").slideUp("slow");
+$(this).siblings().removeClass("current");
+});
+});
+
+
+function setBodyWidth(){
+	var barWidthHelper=document.createElement('div');
+	barWidthHelper.style.cssText="overflow:scroll; width:100px; height:100px;";
+	document.body.appendChild(barWidthHelper);
+	var barWidth=barWidthHelper.offsetWidth-barWidthHelper.clientWidth;
+	document.body.removeChild(barWidthHelper);
+	var bodyWidth=window.screen.availWidth-barWidth;
+	return bodyWidth;
+}
+
+$(document).ready(
+	function(){
+		var bodyWidth=setBodyWidth()+"px";
+		//document.body.style.width=bodyWidth;
+		$("body").css("width",bodyWidth);
+	}
+)
+
+</script>
+<style>
+    .ant-btn-red {
+    color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+}
+</style>

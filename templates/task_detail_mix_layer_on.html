@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center" style="font-size: 30px">
+
+<p style="font-size: 35px"> Mix Layer Method</p>
+<p>Code: {{ code }}</p>
+<table border="1" cellspacing="0" >
+
+<tr>
+    <th>Username</th>
+    <th>Layer Partner</th>
+    <th>Mix Layer 1</th>
+    <th>Layer1 Description</th>
+    <th>Mix Layer 2</th>
+    <th>Layer2 Description</th>
+    <th>Time use layer1</th>
+    <th>Time use layer2</th>
+
+</tr>
+
+{% for item in layer1_user_list %}
+
+
+
+<tr>
+    <th>{{ item.username }}</th>
+    <th>{{ item.layer_partner }}</th>
+    <th><img src="../static/user/{{ item.username }}/{{ code }}/mix_layer1/layer1.png" width="80%"></th>
+    <th style="word-break:break-all; word-wrap:normal;"  width="300px">{{ item.layer1_description }}</th>
+    <th></th>
+    <th></th>
+    <th>{{ item.time_use_layer1 }}</th>
+    <th></th>
+</tr>
+
+{% endfor %}
+
+
+
+{% for item in layer2_user_list %}
+
+    <tr>
+        <th>{{ item.username }}</th>
+        <th>{{ item.layer_partner }}</th>
+        <th></th>
+        <th></th>
+        <th><img src="../static/user/{{ item.username }}/{{ code }}/mix_layer2/layer2.png" width="80%"></th>
+        <th style="word-break:break-all; word-wrap:normal;"  width="300px">{{ item.layer2_description }}</th>
+        <th></th>
+        <th>{{ item.time_use_layer2 }}</th>
+    </tr>
+
+{% endfor  %}
+
+</table>
+<br><br>
+<table border="1" cellspacing="0"  >
+    <tr>
+        <th>Avg Time Cost - Layer1</th>
+        <th>{{ avg_time_layer1 }}</th>
+    </tr>
+    <tr>
+        <th>Avg Time Cost - Layer2</th>
+        <th>{{ avg_time_layer2 }}</th>
+    </tr>
+    <tr>
+        <th>Variance Time Cost - Layer1</th>
+        <th>{{ var_time_layer1 }}</th>
+    </tr>
+
+    <tr>
+        <th>Variance TIme Cost - Layer2</th>
+        <th>{{ var_time_layer2}}</th>
+    </tr>
+</table>
+
+<img src="../static/Task/{{ code }}/value_map.png" width="50%"><br>
+<a href="http://1.15.236.219:5050/designer_interface">
+    <button class="ant-btn-red">Back</button>
+</a>
+</div>
+</body>
+</html>
+<style>
+    .ant-btn-red {
+    color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        font-size: 30px;
+}
+</style>
+

@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="style.css">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box {
+				width: 1000px;
+				height: 600px;
+				margin: 100px auto;
+				background-color: orange;
+			}
+
+			#box nav {
+				width: 100%;
+				height: 100px;
+			}
+
+			#box nav div {
+				height: 50px;
+				line-height: 50px;
+			}
+
+			.changeColor {
+				padding-left: 15px;
+			}
+
+			.changeColor input {
+				width: 30px;
+				height: 30px;
+				margin: 10px 15px;
+			}
+
+			.clean input:first-of-type {
+				width: 100px;
+				height: 30px;
+				background-color: white;
+				margin-left: 15px;
+			}
+
+			.clean input:last-of-type {
+				width: 30px;
+				height: 30px;
+				background-color: white;
+			}
+
+			canvas {
+				background-color: grey;
+			}
+		</style>
+	</head>
+
+	<body>
+     <div id="task_demand" style="float: left;font-size: 20px;color:white;width: 400px">Task Demand:<br>
+        {{ scenario_task_demand }}<br>
+    </div>
+    <div align="center" style="font-size: 35px;float: right;width: 40%;color:white">Time Left</div>
+
+        <div id="time" align="center" style="font-size: 35px;color: white;float: right;width: 40%;"></div><br>
+		<div id="box" align="center">
+			<nav>
+				<div class="changeColor">
+
+									<input type="button" style="background-color: pink;" />
+					<input type="button" style="background-color: red;" />
+					<input type="button" style="background-color: orange;" />
+					<input type="button" style="background-color: yellow;" />
+                    <input type="button" style="background-color: green;"/>
+                    <input type="button" style="background-color: blue"/>
+					<input type="button" style="background-color: purple;" />
+                    <input type="button" style="background-color: white"/>
+                    <input type="button" style="background-color: black"/>
+                    <input type="button" style="background-color: grey"/>
+				</div>
+				<div class="clean">
+					<input class="eraser" type="button" style="width: 50px" value="Eraser"/>  <input type="button" value="Refresh" onclick="refresh()" style="width: 60px">  <input type="button" value="Clear Canvas" onclick="clearCanvas()" style="width: 100px" /> &nbsp;
+
+				</div>
+			</nav>
+			<canvas id="canvas" width="1000px" height="600px"></canvas>
+
+		</div>
+
+
+     <form method="post">
+
+    <br><br>
+         <div align="center">
+    <input type="hidden" value="" id="image" name="image">
+             <p style="color:white;font-size: 25px">Notes For Your Design</p> <textarea rows="10" cols="150" name="note_step2"></textarea><br><br>
+             <button onclick="save()" class="submit" style="font-size: 30px">submit</button>
+         </div>
+     </form>
+
+    </body>
+
+	<script>
+
+
+		var cvs = document.querySelector("canvas");
+		var ctx = cvs.getContext("2d");
+		var eraser = document.querySelector(".eraser");
+		cvs.addEventListener("mousedown", function(e) {
+
+			var x = e.clientX - this.offsetLeft;
+			var y = e.clientY - this.offsetTop;
+
+			cvs.oldPoint = {
+				x: x - 1,
+				y: y - 1,
+			}
+			drawLine(x, y);
+			cvs.addEventListener("mousemove", move);
+			cvs.addEventListener("mouseup", up);
+		});
+
+		function move(e) {
+			var x = e.clientX - this.offsetLeft;
+			var y = e.clientY - this.offsetTop;
+			drawLine(x, y);
+
+			cvs.oldPoint = {
+				x: x,
+				y: y,
+			}
+		}
+
+		function up(e) {
+			this.removeEventListener("mousemove", move);
+			this.removeEventListener("mouseup", up);
+		}
+
+		function drawLine(x, y) {
+			ctx.beginPath();
+			if(ctx.strokeStyle == "#ffff00") {
+				ctx.lineWidth = 40;
+			} else {
+				ctx.lineWidth = 5;
+			}
+
+			ctx.lineJoin = "round";
+			ctx.lineCap = "round";
+			ctx.moveTo(cvs.oldPoint.x, cvs.oldPoint.y);
+			ctx.lineTo(x, y);
+			ctx.closePath();
+			ctx.stroke();
+		}
+
+		function clearCanvas() {
+			ctx.clearRect(0, 0, cvs.width, cvs.height);
+		}
+
+		eraser.onclick = function(e) {
+				ctx.strokeStyle = getComputedStyle(cvs).backgroundColor;
+                    console.log(ctx.strokeStyle);
+                }
+            var colorBtn = document.querySelectorAll(".changeColor input");
+            var colorBtnArr = [].slice.call(colorBtn);
+            console.log(colorBtnArr);
+            colorBtnArr.forEach(function(item) {
+                item.onclick = function() {
+				changeColor(this);
+			}
+		});
+		function changeColor(btn) {
+			ctx.strokeStyle = getComputedStyle(btn).backgroundColor;
+		}
+
+
+function refresh(){var img=new Image();
+    img.onload=function(){
+        ctx.drawImage(img,0,0,1000,600)
+    }
+    img.src="../static/Task/{{ code }}/conversation_picture/conversation_picture.png";
+}
+
+
+
+		window.onload=function(){
+		    var img=new Image();
+		    img.onload=function(){
+		        ctx.drawImage(img,0,0,1000,600)
+            }
+            img.src="../static/Task/{{ code }}/conversation_picture/conversation_picture.png";
+
+        }
+
+var seconds = {{ minute }}*60;
+var speed = 1000;
+var span = document.getElementById("time")
+
+function countDown(seconds,speed){
+                var txt = "00 : " + ((seconds < 10) ? "0" + seconds : seconds) + " : 00";
+                span.innerHTML = txt;
+                var timeId = setTimeout("countDown(seconds--,speed)",speed);
+                if(seconds == 0){
+                        clearTimeout(timeId);
+                };
+}
+
+countDown(seconds,speed)
+
+
+        function save(){
+var img = document.getElementById('image');
+    var imgdatasrc=cvs.toDataURL('image/png')
+            img.value=imgdatasrc
+        }
+        </script>
+
+
+
+</html>
+<style>
+      body {
+
+	background: linear-gradient(#141e30,#243b55);
+
+}
+    .submit{
+                 color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+            }
+</style>

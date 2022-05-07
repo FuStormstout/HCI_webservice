@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+  <div align="center">
+
+  <div style="font-size: 30px;">
+          <br><br><br><br><br><br>
+    <h1></h1>
+    <div align="center">
+        {{ voice_text_1 }}
+    </div>
+      <br><br>
+    <div id="controls" align="center">
+     <button id="recordButton" style="font-size: 30px">Record</button>
+     <button id="pauseButton" disabled style="display: none;" style="font-size: 30px"></button>
+     <button id="stopButton" disabled style="font-size: 30px">Stop</button>
+    </div>
+    <div id="formats"></div>
+    <p><strong></strong></p>
+    <ol id="recordingsList"></ol>
+    <div id="icon_record"></div>
+    <div id="count_down"></div>
+
+    <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+    <script src="../static/js/recorder.js"></script>
+    <script src="../static/js/app.js"></script>
+
+  </div>
+  </div>
+  </body>
+</html>
+
+<script>
+        window.onload=function(){
+        const audio = new Audio()
+        audio.src='../static/Task/{{ code }}/record/record1_robot.wav'
+        audio.play();// 播放音频对
+    }
+
+
+</script>
+
+<style>
+        body {
+    height: 100vh;
+	background: lightslategrey;
+
+}
+</style>
+

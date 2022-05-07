@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div align="center" style="font-size: 25px;">
+
+<p style="font-size: 35px;">Drawing Visual Outcomes</p>
+Code: {{ code }}
+    <table border="1" cellspacing="0"  >
+    <tr>
+    <th width="200px">Username</th>
+        <th>Basic Canvas</th>
+        <th>Note for Basic Canvas from User</th>
+        <th>Vivid Canvas</th>
+        <th>Note for Vivid Canvas from User</th>
+        <th>Naming</th>
+        <th>Basic Canvas Time Cost</th>
+        <th>Vivid Canvas Time Cost</th>
+        <th>Score</th>
+
+    </tr>
+
+    <tr>
+{% for item in user_list_visual %}
+
+        <th>{{ item.username  }}</th>
+        <th><img src="../static/user/{{ item.username }}/{{ code }}/character_design/character_design.jpg" width="500px"></th>
+        <th style="word-wrap: break-spaces">{{ item.note_step1}}</th>
+        <th><img src="../static/user/{{ item.username }}/{{ code }}/conversation_picture/conversation_picture.jpg" width="500px"></th>
+        <th>{{ item.note_step2 }}</th>
+        <th>{{ item.character_name }}</th>
+        <th>{{ item.time_use_character }}</th>
+        <th>{{ item.time_use_scenario }}</th>
+        <th>{{ item.vote_star }}</th>
+
+    </tr>
+
+{% endfor %}
+
+ </table>
+
+<br><br><br>
+
+<table border="1" cellspacing="0"  >
+    <tr>
+
+        <th>Avg Time Cost - Basic Canvas</th>
+        <th>{{ avg_time_cost_character }}</th>
+    </tr>
+
+    <tr>
+        <th>Avg Time Cost - Vivid Canvas</th>
+        <th>{{ avg_time_cost_scenario }}</th>
+    </tr>
+    <tr>
+        <th>Variance Time Cost - Basic Cnavas</th>
+        <th>{{ var_time_cost_character }}</th>
+    </tr>
+    <tr>
+        <th>Variance TIme Cost - Vivid Canvas</th>
+        <th>{{ var_time_cost_scenario }}</th>
+    </tr>
+        <tr>
+        <th>Avg Score</th>
+        <th>{{ avg_score }}</th>
+    </tr>
+    <tr>
+        <th>Variance Score - Score</th>
+        <th>{{ var_score }}</th>
+    </tr>
+    <tr>
+        <th>Oral Error Amount</th>
+        <th>{{ error_count }}</th>
+    </tr>
+</table>
+<br>
+
+
+{% for element in corpus_result %}
+<div class="panel-group" id="accordion">
+	<div class="panel panel-default">
+		<div class="panel-heading"  style="font-weight: bolder">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion"
+				   href="#collapse{{ element.index }}">
+
+                    Corpus {{ element.index }}    Accuracy: {{ element.count_pro }}
+
+    </a>
+			</h4>
+		</div>
+
+
+		<div id="collapse{{ element.index }}" class="panel-collapse collapse">
+			<div class="panel-body">
+                <p style="font-weight: bold"> Question: {{ element.question }}  </p>
+                <p style="font-weight: bold">Expected Keyword: {{ element.keyword }} </p>
+
+                <p style="font-weight: bold"> Participants' Discourse: </p>
+                 {% for thing in element.corpus %}
+       &emsp;&emsp;{{ thing }}<br>
+        {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<img src="../static/Task/{{ code }}/value_map.png" width="50%">
+<img src="../static/Task/{{ code }}/record/wordcloud.png" width="40%">
+<p>----Recordings Download List----</p>
+{% for ulo in user_list_oral %}
+
+<a href="../static/user/{{ ulo.username }}/{{ code }}/{{ ulo.username }}_{{code }}_record.zip" download="{{ ulo.username }}_{{code }}_record.zip">{{ ulo.username }}_{{code }}_record.zip</a><br>
+{% endfor %}
+
+<br>
+<a href="http://1.15.236.219:5050/designer_interface">
+    <button class="ant-btn-red">Back</button>
+</a>
+</div>
+</body>
+</html>
+
+<style>
+    .ant-btn-red {
+    color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        font-size: 30px;
+}
+</style>

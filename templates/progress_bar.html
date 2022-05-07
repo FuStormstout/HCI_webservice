@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div align="center" style="font-size: 35px">
+
+Processing Oral Corpus
+<br><br>
+<div id="myProgress">
+  <div id="myBar">{{ progress_value}}%</div>
+</div>
+    <br>
+ Task Code: {{ code }}
+
+    <br>
+Total Corpus Amount: {{ total_count }}
+    <br>
+Current Processed Amount: {{ process_count }}
+<br>
+    <a href="designer_interface"> <button type="button" class="ant-btn-red">Back</button></a>
+<button type="button"  onclick="javascript:location.reload()" class="ant-btn-red">REFRESH</button></p><br>
+</div>
+
+
+</body>
+</html>
+
+<style>
+    body{
+        background-color:grey;
+    }
+
+    #myProgress {
+  width: 100%;
+  background-color: grey;
+}
+
+#myBar {
+  width: {{ progress_value }}%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+</style>
+
+
+<style>
+    .ant-btn-red {
+    color: #fff;
+        font-size: 34px;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+}
+</style>

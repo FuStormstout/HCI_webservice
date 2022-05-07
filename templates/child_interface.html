@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>child_interface</title>
+</head>
+<body>
+<div style="font-size: 30px;color: white;" align="center">
+
+
+    Name: {{ username }}
+    <br>
+    Gender: {{ gender }}
+    <br>
+    Age: {{ age }}
+    <br>
+    Country: {{ country }}
+<br>
+    Earned Stars: {{ score }}
+<br><br>
+Current Task: {{ current_task_code }}
+
+    <br><br>
+    Gourp No: {{ group }}
+
+    <form method="post"> <input type="text" name="new_group" style="width: 80px;font-size: 30px">   <button class="task_status">Change Group</button> </form>
+
+
+    <br><br>
+    <a href="start_task">
+        <button class="task_status">{{ task_status }}</button>
+    </a>
+    <br><br>
+    <div style="float: left;"><a href="child_interface"><button class="refresh">Refresh</button></a></div>
+
+    <div style="float:right;"><a href="child_login"><button class="logout">log out</button></a><br></div>
+
+</div>
+
+<div align="center">
+<img src="../static/step1.gif" width="50%">
+</div>
+
+</body>
+</html>
+
+<style>
+    body {
+	/*弹性布局 让页面元素垂直+水平居中*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*让页面始终占浏览器可视区域总高度*/
+	height: 100vh;
+	/*背景渐变色*/
+	background: linear-gradient(#141e30,#243b55);
+
+}
+        .logout {
+    color: #fff;
+    background-color: #FF5A44;
+    border-color: #FF5A44;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        font-size: 30px;
+}
+
+
+        .refresh {
+    color: #fff;
+    background-color: grey;
+    border-color: grey;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        font-size: 30px;
+}
+
+    .task_status{
+   color: black;
+    background-color: yellow;
+    border-color: yellow;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        font-size: 30px;
+    }
+</style>

@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  position: relative;
+  width: 900px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.content input {
+  position: absolute;
+  top: 40px;
+  left: 200px;
+  margin-left: 50px;
+}
+
+.content canvas {
+  border: 1px solid #30336b;
+  margin-top: 100px;
+  margin-left: 150px;
+}
+
+.font1{
+    font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+}
+
+.font2{
+    font-family: Arial, sans-serif;
+  font-size: 60px;
+  font-weight: normal;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+}
+
+#task_demand{
+      background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}

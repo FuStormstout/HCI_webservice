@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div align="center" style="font-size: 35px;" >
+
+Thank you for your voting for all the masterpieces!
+<br>
+    <img src="../static/Icons/5seconds.gif">
+</div>
+<script type="text/javascript">
+onload=function(){
+setInterval(go, 1000);
+};
+var x=5; //利用了全局变量来执行
+function go(){
+x--;
+if(x>0){
+document.getElementById("sp").innerHTML=x; //每次设置的x的值都不一样了。
+}else{
+location.href='child_interface';
+}
+}
+</script>
+</body>
+</html>
+
